@@ -65,3 +65,6 @@ Typo Fixes, adding objects, items, or monsters are well accepted and welcomed.
 Simple gameplay changes are also accepted.
 Bug Fixes obviously are accepted.
 ```NOTE: PLEASE, make sure to run the code on all platforms to check it works```
+
+# License
+TWOTW is under the [WTFPL v2](http://www.wtfpl.net/txt/copying/) License, See ```LICENSE```  for the full text of the license (don't worry -- it's really short and to the point).
