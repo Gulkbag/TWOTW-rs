@@ -1,0 +1,9 @@
+[package]
+name = "twotw"
+version = "0.1.0"
+authors = ["Ahmed Nasser <ahmednasser321432@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+tcod = "0.15"
+rand = "0.3.9"
