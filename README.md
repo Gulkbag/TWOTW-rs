@@ -48,8 +48,7 @@ cargo run --release
 ### Building on Windows (with MinGW)
 
 You have to [download and install MinGW](http://www.mingw.org/). Then,
-add Rust's and MinGW's bin directories to your path and compile your
-game:
+add Rust's and MinGW's bin directories to your path and compile the game:
 
 ```
 set PATH=%PATH%;C:\Program Files (x86)\Rust\bin;C:\MinGW\bin
