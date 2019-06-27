@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather:300,400,700&display=swap');
+* {
+	font-family: 'Merriweather', sans-serif;
+	background: black;
+	color: rgb(252, 209, 68);
+}
+
+h1 {
+	text-align: center;
+}
+
+bold {
+	font-weight: bold;
+	color: rgb(88, 192, 252);
+}
+
+.seperator {
+
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+lh {
+	font-weight: bold;
+}
