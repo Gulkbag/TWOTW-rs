@@ -59,6 +59,9 @@ git clone https://github.com/Gulkbag/TWOTW-rs.git
   $ cargo run --release
   ```
 
+# Prebuilt binaries
+Currently we have binaries for windows only, linux binaries will soon be available, Mac binaries on the other is not known yet, All the binaries are available in the releases section, no installation just a zip file, extract and run the twotw executable, any problems please report them as fast as possible
+
 # Contributing
 The game runs over 1 single file called main.rs, yeah i know it's weird but hey man ```I HATE OOP``` .
 Typo Fixes, adding objects, items, or monsters are well accepted and welcomed.
