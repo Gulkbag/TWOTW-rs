@@ -4,7 +4,7 @@
 
 Rust is a systems programming language targeting roughly the same space as C++. That means it’s fast and is generally used for things where you need a fair bit of control over how are things structured in memory, etc. Rust is a good candidate for writing a browser, database, operating system, web server and…​ games.
 
-What made me like Rust is that it's pretty low level so i could use it for stuff i would normally go for C for, with good support for calling into libs written C/C++, it's a language that lets you write clean code but in the same time use low level stuff (C is still the best tho lmao its' my favorite language).
+What made me like Rust is that it's pretty low level so i could use it for stuff i would normally go for C for, with good support for calling into libs written C/C++, it's a language that lets you write clean code but in the same time use low level stuff (C is still the best tho lmao it's my favorite language).
 
 # Libraries
 
