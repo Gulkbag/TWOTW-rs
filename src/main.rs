@@ -3,6 +3,9 @@ extern crate serde_derive;
 
 use std::cmp;
 
+
+use std::io::BufReader;
+use rodio::Source;
 use rand::Rng;
 use std::error::Error;
 use std::fs::File;
@@ -1802,16 +1805,16 @@ fn new_game(tcod: &mut Tcod) -> (Vec<Object>, Game) {
     };
 
     // initial equipment: a kebab stick
-    let mut dagger = Object::new(0, 0, '|', "Kebab Stick", colors::SKY, false);
-    dagger.item = Some(Item::Sword);
-    dagger.equipment = Some(Equipment {
+    let mut kebab = Object::new(0, 0, '|', "Kebab Stick", colors::SKY, false);
+    kebab.item = Some(Item::Sword);
+    kebab.equipment = Some(Equipment {
         equipped: true,
         slot: Slot::LeftHand,
         max_hp_bonus: 0,
         defense_bonus: 0,
         power_bonus: 2,
     });
-    game.inventory.push(dagger);
+    game.inventory.push(kebab);
 
     initialise_fov(&game.map, tcod);
 
@@ -1848,6 +1851,15 @@ fn initialise_fov(map: &Map, tcod: &mut Tcod) {
 fn play_game(objects: &mut Vec<Object>, game: &mut Game, tcod: &mut Tcod) {
     // force FOV "recompute" first time through the game loop
     let mut previous_player_position = (-1, -1);
+
+    let device = rodio::default_output_device().unwrap();
+
+    let file = File::open("music.wav").unwrap();
+	let source = rodio::Decoder::new(BufReader::new(file)).unwrap();
+
+	let source = source.repeat_infinite();
+
+	rodio::play_raw(&device, source.convert_samples());
 
     let mut key = Default::default();
 
@@ -1962,11 +1974,21 @@ fn main_menu(tcod: &mut Tcod) {
 }
 
 fn main() {
+
+	let device = rodio::default_output_device().unwrap();
+
+	let file = File::open("music.wav").unwrap();
+	let source = rodio::Decoder::new(BufReader::new(file)).unwrap();
+
+	let source = source.repeat_infinite();
+
+	rodio::play_raw(&device, source.convert_samples());
+
     let root = Root::initializer()
         .font("terminal10x16_gs_tc.png", FontLayout::Tcod)
         .font_type(FontType::Greyscale)
         .size(SCREEN_WIDTH, SCREEN_HEIGHT)
-        .title("Rust/libtcod tutorial")
+        .title("TWOTW")
         .init();
     tcod::system::set_fps(LIMIT_FPS);
 
