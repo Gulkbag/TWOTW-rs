@@ -1,5 +1,8 @@
 `Please if you get offended easily don't play this game`
 
+# Manual
+you can find the manual for this game [Here](https://gulkbag.github.io/TWOTW-Man/)
+
 # Why rust?
 
 Rust is a systems programming language targeting roughly the same space as C++. That means it’s fast and is generally used for things where you need a fair bit of control over how are things structured in memory, etc. Rust is a good candidate for writing a browser, database, operating system, web server and…​ games.
