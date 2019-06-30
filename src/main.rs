@@ -962,7 +962,7 @@ fn make_map(objects: &mut Vec<Object>, level: u32) -> Map {
         last_room_x,
         last_room_y,
         '<',
-        "stairs",
+        "Stairs",
         colors::WHITE,
         false,
     );
@@ -1004,7 +1004,7 @@ fn place_objects(room: Rect, map: &Map, objects: &mut Vec<Object>, level: u32) {
     let num_monsters = rand::thread_rng().gen_range(0, max_monsters + 1);
 
     // monster random table
-    let troll_chance = from_dungeon_level(
+    let jew_chance = from_dungeon_level(
         &[
             Transition {
                 level: 3,
@@ -1028,8 +1028,28 @@ fn place_objects(room: Rect, map: &Map, objects: &mut Vec<Object>, level: u32) {
             item: "nigger",
         },
         Weighted {
-            weight: troll_chance,
+            weight: jew_chance,
             item: "jew",
+        },
+        Weighted {
+        	weight: from_dungeon_level(
+        		&[
+        			Transition {
+        				level: 5,
+        				value: 5,
+        			},
+        			Transition {
+        				level: 7,
+        				value: 15,
+        			},
+        			Transition {
+        				level: 10,
+        				value: 30,
+        			},
+        		],
+        		level,
+        	),
+        	item: "tex",
         },
     ];
     let monster_choice = WeightedChoice::new(monster_chances);
@@ -1045,7 +1065,7 @@ fn place_objects(room: Rect, map: &Map, objects: &mut Vec<Object>, level: u32) {
 
     // item random table
     let item_chances = &mut [
-        // healing potion always shows up, even if all other items have 0 chance
+        // pizza always shows up, even if all other items have 0 chance
         Weighted {
             weight: 35,
             item: Item::Heal,
@@ -1133,6 +1153,20 @@ fn place_objects(room: Rect, map: &Map, objects: &mut Vec<Object>, level: u32) {
                     });
                     jew.ai = Some(Ai::Basic);
                     jew
+                }
+                "tex" => {
+                	// create king of jews (tex western boss)
+                	let mut tex = Object::new(x, y, 'M', "King Of Jews (Tex western)", colors::LIGHT_BLUE, true);
+                	tex.fighter = Some(Fighter {
+                		base_max_hp: 50,
+                		hp: 50,
+                		base_defense: 4,
+                		base_power: 10,
+                		xp: 300,
+                		on_death: DeathCallback::Monster,
+                	});
+                	tex.ai = Some(Ai::Basic);
+                	tex
                 }
                 _ => unreachable!(),
             };
@@ -1365,6 +1399,8 @@ fn render_all(tcod: &mut Tcod, objects: &[Object], game: &mut Game, fov_recomput
     // show the player's stats
     let hp = objects[PLAYER].fighter.map_or(0, |f| f.hp);
     let max_hp = objects[PLAYER].max_hp(game);
+    let xp = objects[PLAYER].fighter.map_or(0, |f| f.xp);
+    let max_xp = LEVEL_UP_BASE + objects[PLAYER].level * LEVEL_UP_FACTOR;
     render_bar(
         &mut tcod.panel,
         1,
@@ -1378,8 +1414,29 @@ fn render_all(tcod: &mut Tcod, objects: &[Object], game: &mut Game, fov_recomput
     );
 
     tcod.panel.print_ex(
+    	1,
+    	2,
+    	BackgroundFlag::None,
+    	TextAlignment::Left,
+    	format!("Player Level: {}", objects[PLAYER].level)
+    );
+
+    render_bar(
+    	&mut tcod.panel,
+    	1,
+    	3,
+    	BAR_WIDTH,
+    	"XP",
+    	xp,
+    	max_xp,
+    	colors::LIGHT_YELLOW,
+    	colors::DARKER_YELLOW,
+    );
+
+
+    tcod.panel.print_ex(
         1,
-        3,
+        5,
         BackgroundFlag::None,
         TextAlignment::Left,
         format!("Dungeon level: {}", game.dungeon_level),
@@ -1637,7 +1694,7 @@ fn handle_keys(
             }
             DidntTakeTurn
         }
-
+        
         (Key { printable: 'c', .. }, true) => {
             // show character information
             let player = &objects[PLAYER];
@@ -1666,7 +1723,6 @@ Defense: {}",
 
             DidntTakeTurn
         }
-
         _ => DidntTakeTurn,
     }
 }
