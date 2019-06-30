@@ -79,4 +79,4 @@ $ cargo run --release
 Right now we have only windows binaries, arch, void and gentoo linux binaries and Mac are in progress, you can find all in the releases section.
 
 # License
-**tcod-rs** is licensed under [WTFPL v2](http://www.wtfpl.net/txt/copying/). See `LICENSE` for the full text of the license (don't worry -- it's really short and to the point).
+**tcod-rs** and **TWOTW** is licensed under [WTFPL v2](http://www.wtfpl.net/txt/copying/). See `LICENSE` for the full text of the license (don't worry -- it's really short and to the point).
